@@ -13,23 +13,19 @@ import javax.swing.text.*;
  *
  * @author maria
  */
-public class ProcesadorView {
-    public static void main(String[] args) {
-        MenuProcesador marco = new MenuProcesador();
-        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+public class ProcessingMenu extends JFrame{
+    public ProcessingMenu(){
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBounds(500,300,550,400);
+        ProcessingPanel lamina = new ProcessingPanel();
+        this.add(lamina);
+        this.setVisible(true);
     }
 }
 
-class MenuProcesador extends JFrame{
-    public MenuProcesador(){
-        setBounds(500,300,550,400);
-        LaminaProcesador lamina = new LaminaProcesador();
-        add(lamina);
-        setVisible(true);
-    }
-}
-class LaminaProcesador extends JPanel{
-    public LaminaProcesador(){
+class ProcessingPanel extends JPanel{
+    public ProcessingPanel(){
         setLayout(new BorderLayout());
         
         JPanel laminaMenu = new JPanel();

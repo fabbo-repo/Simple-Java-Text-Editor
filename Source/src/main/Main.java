@@ -5,13 +5,22 @@
  */
 package main;
 
+import views.ProcessingMenu;
+
 /**
  *
  * @author Fabbo
  */
-/*public class Main {
+public class Main {
     
     public static void main(String[] args) {
-        System.out.println("Oliiz");
+        System.out.println("Starting...");
+        
+        /* Create and display the MainWindow */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProcessingMenu().setVisible(true);
+            }
+        });
     }
-}*/
+}
