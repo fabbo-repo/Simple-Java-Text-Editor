@@ -70,33 +70,31 @@ class ProcessingPanel extends JPanel{
     public void configura_menu(String rotulo, String menu, String tipo_letra, int estilos, int tam){
         JMenuItem elem_menu = new JMenuItem(rotulo);
         
-        switch(menu) {
-            case "fuente": font.add(elem_menu); break;
-            case "estilo": style.add(elem_menu); break;
-            case "tamaño": size.add(elem_menu); break;
-            default: break;
+        if(menu.equals("fuente")) {
+            font.add(elem_menu);
+            
+            if(tipo_letra.equals("Arial")){
+                elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra","Arial"));
+            } else if(tipo_letra.equals("Courier")){
+                elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra","Courier"));
+            } else if(tipo_letra.equals("Verdana")){
+                elem_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra","Verdana"));
+            }
+            
+        } else if(menu.equals("estilo")){
+            style.add(elem_menu); 
+            
+            if(estilos==Font.BOLD){
+                elem_menu.addActionListener(new StyledEditorKit.BoldAction());
+            } else if(estilos==Font.ITALIC){
+                elem_menu.addActionListener(new StyledEditorKit.ItalicAction());
+            }
+            
+        } else if(menu.equals("tamaño")){
+            size.add(elem_menu); 
+            
+            elem_menu.addActionListener(new StyledEditorKit.FontSizeAction("cambia_tamaño",tam));
         }
-        
-        elem_menu.addActionListener(new Gestiona_Eventos(rotulo, tipo_letra, estilos, tam));
-    }
-    
-    private class Gestiona_Eventos implements ActionListener{
-
-        String tipo_texto, menu;
-        int estilo_letra, tamagno_letra;
-        
-        Gestiona_Eventos(String elemento, String texto2, int estilo2, int tam_letra) {
-            tipo_texto = texto2;
-            estilo_letra = estilo2;
-            tamagno_letra = tam_letra;
-            menu = elemento;
-        }
-        
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            area.setFont(new Font(tipo_texto,estilo_letra,tamagno_letra));
-        }
-        
     }
     
     JTextPane area;
